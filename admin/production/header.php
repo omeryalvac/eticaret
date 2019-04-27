@@ -9,13 +9,25 @@ $ayarsor->execute(array(
 
 
 $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
+
+$kullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail");
+$kullanicisor->execute(array(
+  'mail' => $_SESSION['kullanici_mail']
+));
+$say=$kullanicisor->rowCount();
+
+$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
+
+if($say==0) {
+  header("Location:login.php?durum=izinsiz");
+  exit;
+}
+
+
+
+
+
 ?>
-
-
-
-
-
-
 
 
 
@@ -45,6 +57,10 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
     <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
+
+    
+<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -67,7 +83,7 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
               </div>
               <div class="profile_info">
                 <span>Hoşgeldin,</span>
-                <h2>Merhaba Uğur</h2>
+                <h2><?php echo $kullanicicek['kullanici_adsoyad']; ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -80,6 +96,10 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
                 <h3>Menü</h3>
                 <ul class="nav side-menu">
                 <li><a href="index.php"><i class="fa fa-home"></i> Anasayfa </a></li>
+                <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda </a></li>
+                <li><a href="kullanici.php"><i class="fa fa-user"></i> Kullanıcı İşlemleri </a></li>
+                <li><a href="menu.php"><i class="fa fa-list"></i> Menü İşlemleri </a></li>
+                <li><a href="slider.php"><i class="fa fa-image"></i> Slider </a></li>
                   <li><a><i class="fa fa-cogs"></i> Site Ayarları <span class="fa fa-cogs"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="genel-ayar.php">Genel Ayarlar</a></li>
@@ -87,6 +107,7 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
                       <li><a href="api-ayarlar.php">Api Ayarları</a></li>
                       <li><a href="sosyal-ayar.php">Sosyal Ayarlar</a></li>
                       <li><a href="mail-ayar.php">Mail Ayar</a></li>
+                      
                      
                     </ul>
                   </li>
@@ -129,19 +150,13 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">Uğurcan Uyar
+                    <img src="images/img.jpg" alt=""><?php echo $kullanicicek['kullanici_adsoyad']; ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profil</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Ayarlar</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="javascript:;"> Profil Bilgileri</a></li>
+               
+                    <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Çıkış</a></li>
                   </ul>
                 </li>
 
