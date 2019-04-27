@@ -1,5 +1,14 @@
 <?php include 'header.php';
+$hakkimizdasor=$db->prepare("SELECT * FROM hakkimizda where hakkimizda_id=:id");
+$hakkimizdasor->execute(array(
+  'id' => 0
+));
+
+
+$hakkimizdacek=$hakkimizdasor->fetch(PDO::FETCH_ASSOC);
 ?>
+
+
 
         <!-- page content -->
         <div class="right_col" role="main">
@@ -11,7 +20,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Sosyal Ayarlar <small>,
+                    <h2>Hakkımızda Ayarları<small>,
                      <?php
 
                      if(isset($_GET['durum']) && $_GET['durum']=="ok"){?>
@@ -55,45 +64,65 @@
                     <form action="../netting/islem.php" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Facebook <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> Başlık <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" name="ayar_facebook" value="<?php echo $ayarcek['ayar_facebook'] ?>" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="first-name" name="hakkimizda_baslik" value="<?php echo $hakkimizdacek['hakkimizda_baslik'] ?>" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Twitter <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> İçerik <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" name="ayar_twitter" value="<?php echo $ayarcek['ayar_twitter'] ?>" required="required" class="form-control col-md-7 col-xs-12">
+                        <textarea class="ckeditor" id="editor1" name="hakkimizda_icerik" ><?php echo $hakkimizdacek['hakkimizda_icerik'] ?></textarea>
+                        </div>
+                      </div>
+                      <script type="text/javascript">
+
+                      CKEDITOR.replace('editor1',
+                      {
+                        filebrowserBrowseUrl : 'ckfinder/ckfinder.html',
+                        filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?type=Images',
+                        filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?type=Flash',
+                        filebroserUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                        filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                        filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+                        forcePasteAsPlainText: true
+                      }
+                      );
+                      </script>
+
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"> Video <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" name="hakkimizda_video" value="<?php echo $hakkimizdacek['hakkimizda_video'] ?>" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Google<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Vizyon <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" name="ayar_google" value="<?php echo $ayarcek['ayar_google'] ?>" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="first-name" name="hakkimizda_vizyon" value="<?php echo $hakkimizdacek['hakkimizda_vizyon'] ?>" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
+
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Youtube<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Misyon <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" name="ayar_youtube" value="<?php echo $ayarcek['ayar_youtube'] ?>" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="first-name" name="hakkimizda_misyon" value="<?php echo $hakkimizdacek['hakkimizda_misyon'] ?>" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-
-                      
-
-                   
 
   
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div align=right class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" name="sosyalayarkaydet" class="btn btn-success">Güncelle</button>
+                          <button type="submit" name="hakkimizdakaydet" class="btn btn-success">Güncelle</button>
                         </div>
                       </div>
 
