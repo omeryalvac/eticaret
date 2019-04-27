@@ -14,7 +14,7 @@ if (isset($_POST['kullanicikaydet'])) {
 	if ($kullanici_passwordone==$kullanici_passwordtwo) {
 
 
-		if ($kullanici_passwordone>=6) {
+		if (strlen($kullanici_passwordone)>=6) {
 
 
 // Başlangıç
