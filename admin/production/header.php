@@ -9,25 +9,13 @@ $ayarsor->execute(array(
 
 
 $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
-
-$kullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail");
-$kullanicisor->execute(array(
-  'mail' => $_SESSION['kullanici_mail']
-));
-$say=$kullanicisor->rowCount();
-
-$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
-
-if($say==0) {
-  header("Location:login.php?durum=izinsiz");
-  exit;
-}
-
-
-
-
-
 ?>
+
+
+
+
+
+
 
 
 
@@ -57,10 +45,6 @@ if($say==0) {
     <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
-
-    
-<script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
-
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -83,7 +67,7 @@ if($say==0) {
               </div>
               <div class="profile_info">
                 <span>Hoşgeldin,</span>
-                <h2><?php echo $kullanicicek['kullanici_adsoyad']; ?></h2>
+                <h2>Merhaba Uğur</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -96,10 +80,6 @@ if($say==0) {
                 <h3>Menü</h3>
                 <ul class="nav side-menu">
                 <li><a href="index.php"><i class="fa fa-home"></i> Anasayfa </a></li>
-                <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda </a></li>
-                <li><a href="kullanici.php"><i class="fa fa-user"></i> Kullanıcı İşlemleri </a></li>
-                <li><a href="menu.php"><i class="fa fa-list"></i> Menü İşlemleri </a></li>
-                <li><a href="slider.php"><i class="fa fa-image"></i> Slider </a></li>
                   <li><a><i class="fa fa-cogs"></i> Site Ayarları <span class="fa fa-cogs"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="genel-ayar.php">Genel Ayarlar</a></li>
@@ -107,7 +87,6 @@ if($say==0) {
                       <li><a href="api-ayarlar.php">Api Ayarları</a></li>
                       <li><a href="sosyal-ayar.php">Sosyal Ayarlar</a></li>
                       <li><a href="mail-ayar.php">Mail Ayar</a></li>
-                      
                      
                     </ul>
                   </li>
@@ -150,13 +129,19 @@ if($say==0) {
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt=""><?php echo $kullanicicek['kullanici_adsoyad']; ?>
+                    <img src="images/img.jpg" alt="">Uğurcan Uyar
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profil Bilgileri</a></li>
-               
-                    <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Çıkış</a></li>
+                    <li><a href="javascript:;"> Profil</a></li>
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Ayarlar</span>
+                      </a>
+                    </li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 

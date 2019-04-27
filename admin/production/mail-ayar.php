@@ -14,13 +14,13 @@
                     <h2>Mail Ayarları <small>,
                      <?php
 
-                     if(isset($_GET['durum']) && $_GET['durum']=="ok"){?>
+                     if($_GET['durum']=="ok"){?>
 
                      <b style="color:green;">İşlem Başarılı...</b>
 
                     <?php }
 
-                    elseif (isset($_GET['durum']) && $_GET['durum']=="no"){?>
+                    elseif ($_GET['durum']=="no"){?>
 
                       <b style="color:red;">İşlem Başarısız...</b>
  

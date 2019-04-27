@@ -1,39 +1,9 @@
-<?php
-
-include 'admin/netting/baglam.php';
-include 'admin/production/fonksiyon.php';
-
-$ayarsor=$db->prepare("SELECT * FROM ayar where ayar_id=:id");
-$ayarsor->execute(array(
-  'id' => 0
-));
-
-
-$ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
-
-
-$kullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_mail=:mail");
-$kullanicisor->execute(array(
-  'mail' => $_SESSION['userkullanici_mail']
-  ));
-$say=$kullanicisor->rowCount();
-$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
-
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $ayarcek['ayar_title'] ?></title>
-		<meta name="description" content="<?php echo $ayarcek['ayar_description'] ?>">
-    <meta name="keywords" content="<?php echo $ayarcek['ayar_keywords'] ?>">
-    <meta name="author" content="<?php echo $ayarcek['ayar_author'] ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Theme</title>
 
     <!-- Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,400italic,700' rel='stylesheet' type='text/css'>
@@ -63,58 +33,38 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6 col-md-4 main-logo">
-					<a href="index.php"><img width="150"src="<?php echo $ayarcek['ayar_logo'] ?>" alt="Site Logosu" class="logo img-responsive"></a>
+					<a href="index-1.htm"><img src="images\logo.png" alt="logo" class="logo img-responsive"></a>
 				</div>
 				<div class="col-md-8">
 					<div class="pushright">
 						<div class="top">
-
-
-						<?php 
-
-                  if (!isset($_SESSION['userkullanici_mail'])) {?>
-
-                   <a href="#" id="reg" class="btn btn-default btn-dark">Giriş Yap<span>-- yada --</span>Kayıt Ol</a>
-
-                     <?php } else { ?>
-
-                       <a href="#"  class="btn btn-default btn-dark">Hoşgeldin<span>--</span><?php echo $kullanicicek['kullanici_adsoyad'] ?></a>
-
-                      <?php } ?>
-						
-						
+							<a href="#" id="reg" class="btn btn-default btn-dark">Login<span>-- Or --</span>Register</a>
 							<div class="regwrap">
 								<div class="row">
 									<div class="col-md-6 regform">
 										<div class="title-widget-bg">
-											<div class="title-widget">Kullanıcı Girişi</div>
+											<div class="title-widget">Login</div>
 										</div>
-										<form action="admin/netting/islem.php" method="POST" role="form">
-
-
-                      <div class="form-group">
-                     <input type="text" class="form-control" name="kullanici_mail" id="username" placeholder="Kullanıcı Adınız (Mail Adresiniz)">
-                       </div>
-
-
-                        <div class="form-group">
-                        <input type="password" class="form-control" name="kullanici_password" id="password" placeholder="Şifreniz">
-                            </div>
-
-
-                           <div class="form-group">
-                        <button type="submit" name="kullanicigiris" class="btn btn-default btn-red btn-sm">Giriş Yap</button>
-                          </div>
-
-                            </form>
+										<form role="form">
+											<div class="form-group">
+												<input type="text" class="form-control" id="username" placeholder="Username">
+											</div>
+											<div class="form-group">
+												<input type="password" class="form-control" id="password" placeholder="password">
+											</div>
+											<div class="form-group">
+												<button class="btn btn-default btn-red btn-sm">Sign In</button>
+											</div>
+										</form>
 									</div>
 									<div class="col-md-6">
 										<div class="title-widget-bg">
-											<div class="title-widget">Kayıt Ol</div>
+											<div class="title-widget">Register</div>
 										</div>
 										<p>
-											Yeni kullanıcımısın? Alışverişe başlamak için hemen kayıt olmalısın!
-										<a href="register"><button class="btn btn-default btn-yellow"> Kayıt Ol</button></a>
+											New User? By creating an account you be able to shop faster, be up to date on an order's status...
+										</p>
+										<button class="btn btn-default btn-yellow">Register Now</button>
 									</div>
 								</div>
 							</div>
@@ -156,36 +106,82 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 						</div>
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav">
-								<li><a href="index.php" class="active">Anasayfa</a><div class="curve"></div></li>
-                <?php
-                $menusor=$db->prepare("SELECT * FROM menu where menu_durum=:durum order by menu_sira ASC limit 5");
-								$menusor->execute(array(
-								'durum' => 1 
-							     ));
-								
-								while($menucek=$menusor->fetch(PDO::FETCH_ASSOC)){ ?>
-
-								<li><a href="
-								<?php
-								if(!empty($menucek['menu_url'])){
-									echo $menucek['menu_url'];
-
-								}
-								else{
-									echo "sayfa-".seo($menucek['menu_ad']);
-								}
-								 ?>
-								
-								
-							
-
-                
-								"><?php echo $menucek['menu_ad'] ?> </a> </li>
-							<?php	} ?>
-
-
-
-
+								<li><a href="index-1.htm" class="active">Home</a><div class="curve"></div></li>
+								<li class="dropdown menu-large">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mega Menu</a>
+									<ul class="dropdown-menu megamenu container row">
+										<li class="col-sm-4">
+											<h4>Page Template</h4>
+											<ul>
+												<li><a href="index-1.htm">Home Page</a></li>
+												<li><a href="category.htm">Category Page</a></li>
+												<li><a href="category-list.htm">Category List Page</a></li>
+												<li><a href="category-fullwidth.htm">Category fullwidth</a></li>
+												<li><a href="product.htm">Detail Product Page</a></li>
+												<li><a href="page-sidebar.htm">Page with sidebar</a></li>
+												<li><a href="register.htm">Register Page</a></li>
+												<li><a href="order.htm">Order Page</a></li>
+												<li><a href="checkout.htm">Checkout Page</a></li>
+												<li><a href="cart.htm">Cart Page</a></li>
+												<li><a href="contact.htm">Contact Page</a></li>
+											</ul>
+											<div class="dashed-nav"></div>
+										</li>
+										<li class="col-sm-4">
+											<h4>Page Template</h4>
+											<ul>
+												<li><a href="index-1.htm">Home Page</a></li>
+												<li><a href="category.htm">Category Page</a></li>
+												<li><a href="category-list.htm">Category List Page</a></li>
+												<li><a href="category-fullwidth.htm">Category fullwidth</a></li>
+												<li><a href="product.htm">Detail Product Page</a></li>
+												<li><a href="page-sidebar.htm">Page with sidebar</a></li>
+												<li><a href="register.htm">Register Page</a></li>
+												<li><a href="order.htm">Order Page</a></li>
+												<li><a href="checkout.htm">Checkout Page</a></li>
+												<li><a href="cart.htm">Cart Page</a></li>
+												<li><a href="contact.htm">Contact Page</a></li>
+											</ul>
+											<div class="dashed-nav"></div>
+										</li>
+										<li class="col-sm-4">
+											<h4>Page Template</h4>
+											<ul>
+												<li><a href="index-1.htm">Home Page</a></li>
+												<li><a href="category.htm">Category Page</a></li>
+												<li><a href="category-list.htm">Category List Page</a></li>
+												<li><a href="category-fullwidth.htm">Category fullwidth</a></li>
+												<li><a href="product.htm">Detail Product Page</a></li>
+												<li><a href="page-sidebar.htm">Page with sidebar</a></li>
+												<li><a href="register.htm">Register Page</a></li>
+												<li><a href="order.htm">Order Page</a></li>
+												<li><a href="checkout.htm">Checkout Page</a></li>
+												<li><a href="cart.htm">Cart Page</a></li>
+												<li><a href="contact.htm">Contact Page</a></li>
+											</ul>
+											<div class="dashed-nav"></div>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="index-1.htm">Home Page</a></li>
+										<li><a href="category.htm">Category Page</a></li>
+										<li><a href="category-list.htm">Category List Page</a></li>
+										<li><a href="category-fullwidth.htm">Category fullwidth</a></li>
+										<li><a href="product.htm">Detail Product Page</a></li>
+										<li><a href="page-sidebar.htm">Page with sidebar</a></li>
+										<li><a href="register.htm">Register Page</a></li>
+										<li><a href="order.htm">Order Page</a></li>
+										<li><a href="cart.htm">Cart Page</a></li>
+										<li><a href="checkout.htm">Checkout Page</a></li>
+										<li><a href="contact.htm">Contact Page</a></li>
+									</ul>
+								</li>
+								<li><a href="page-sidebar.htm">About</a></li>
+								<li><a href="category.htm">Product</a></li>
+								<li><a href="contact.htm">Contact</a></li>
 							</ul>
 						</div>
 					</div>
@@ -238,19 +234,6 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 							<div class="clearfix"></div>
 						</div>
 					</div>
-					<<?php 
-
-if (isset($_SESSION['userkullanici_mail'])) {?>
-
-<ul class="small-menu">
-  <li><a href="hesabim" class="myacc">Hesap Bilgilerim</a></li>
-  <li><a href="siparislerim" class="myshop">Siparişlerim</a></li>
-  <li><a href="logout" class="mycheck">Güvenli Çıkış</a></li>
-</ul>
-
-<?php }
-
-?>
 				</div>
 			</div>
 		</div>
