@@ -1,5 +1,5 @@
 <?php include 'header.php';
-$menusor=$db->prepare("SELECT * FROM menu");
+$menusor=$db->prepare("SELECT * FROM menu order by menu_sira ASC");
 $menusor->execute();
 
 

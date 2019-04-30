@@ -99,6 +99,8 @@ if($say==0) {
                 <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda </a></li>
                 <li><a href="kullanici.php"><i class="fa fa-user"></i> Kullanıcı İşlemleri </a></li>
                 <li><a href="menu.php"><i class="fa fa-list"></i> Menü İşlemleri </a></li>
+                <li><a href="urun.php"><i class="fa fa-shopping-basket"></i> Ürün İşlemleri </a></li>
+                <li><a href="kategori.php"><i class="fa fa-list"></i> Kategori İşlemleri </a></li>
                 <li><a href="slider.php"><i class="fa fa-image"></i> Slider </a></li>
                   <li><a><i class="fa fa-cogs"></i> Site Ayarları <span class="fa fa-cogs"></span></a>
                     <ul class="nav child_menu">
