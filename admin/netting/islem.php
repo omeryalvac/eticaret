@@ -815,7 +815,21 @@ if (isset($_POST['iletisimayarkaydet'])) {
                                 }
                             }
 
-                         
+                            if($_GET[urunsil]=="ok") {
+
+                                $sil=$db->prepare("DELETE from urun where urun_id=:id");
+                                $kontrol=$sil->execute(array(
+                                    'id'=> $_GET['urun_id']
+                                ));
+                            
+                                if($kontrol){
+                                    header("Location:../production/urun.php?sil=ok");
+                                }
+                                else {
+                                    header("Location:../production/urun.php?sil=no");
+                                }
+                            
+                            }
 
                             if (isset($_POST['urunduzenle'])) {
 
@@ -857,8 +871,44 @@ if (isset($_POST['iletisimayarkaydet'])) {
                             
                             }
 
-                          
+                            if (isset($_POST['urunekle'])) {
+
+                                $urun_seourl=seo($_POST['urun_ad']);
                             
+                                $kaydet=$db->prepare("INSERT INTO urun SET
+                                    kategori_id=:kategori_id,
+                                    urun_ad=:urun_ad,
+                                    urun_detay=:urun_detay,
+                                    urun_fiyat=:urun_fiyat,
+                                    urun_video=:urun_video,
+                                    urun_keyword=:urun_keyword,
+                                    urun_durum=:urun_durum,
+                                    urun_stok=:urun_stok,	
+                                    urun_seourl=:seourl		
+                                    ");
+                                $insert=$kaydet->execute(array(
+                                    'kategori_id' => $_POST['kategori_id'],
+                                    'urun_ad' => $_POST['urun_ad'],
+                                    'urun_detay' => $_POST['urun_detay'],
+                                    'urun_fiyat' => $_POST['urun_fiyat'],
+                                    'urun_video' => $_POST['urun_video'],
+                                    'urun_keyword' => $_POST['urun_keyword'],
+                                    'urun_durum' => $_POST['urun_durum'],
+                                    'urun_stok' => $_POST['urun_stok'],
+                                    'seourl' => $urun_seourl
+                                        
+                                    ));
+                            
+                                if ($insert) {
+                            
+                                    Header("Location:../production/urun.php?durum=ok");
+                            
+                                } else {
+                            
+                                    Header("Location:../production/urun.php?durum=no");
+                                }
+                            
+                            }
 
                            
 
