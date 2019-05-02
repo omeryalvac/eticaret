@@ -845,6 +845,7 @@ if (isset($_POST['iletisimayarkaydet'])) {
                                     urun_keyword=:urun_keyword,
                                     urun_durum=:urun_durum,
                                     urun_stok=:urun_stok,	
+                                    urun_onecikar=:urun_onecikar,
                                     urun_seourl=:seourl		
                                     WHERE urun_id={$_POST['urun_id']}");
                                 $update=$kaydet->execute(array(
@@ -856,6 +857,7 @@ if (isset($_POST['iletisimayarkaydet'])) {
                                     'urun_keyword' => $_POST['urun_keyword'],
                                     'urun_durum' => $_POST['urun_durum'],
                                     'urun_stok' => $_POST['urun_stok'],
+                                    'urun_onecikar' => $_POST['urun_onecikar'],
                                     'seourl' => $urun_seourl
                                         
                                     ));
@@ -884,6 +886,7 @@ if (isset($_POST['iletisimayarkaydet'])) {
                                     urun_keyword=:urun_keyword,
                                     urun_durum=:urun_durum,
                                     urun_stok=:urun_stok,	
+                                    urun_onecikar=:urun_onecikar,
                                     urun_seourl=:seourl		
                                     ");
                                 $insert=$kaydet->execute(array(
@@ -895,6 +898,7 @@ if (isset($_POST['iletisimayarkaydet'])) {
                                     'urun_keyword' => $_POST['urun_keyword'],
                                     'urun_durum' => $_POST['urun_durum'],
                                     'urun_stok' => $_POST['urun_stok'],
+                                    'urun_onecikar' => $_POST['urun_onecikar'],
                                     'seourl' => $urun_seourl
                                         
                                     ));
