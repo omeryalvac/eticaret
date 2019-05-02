@@ -914,6 +914,40 @@ if (isset($_POST['iletisimayarkaydet'])) {
                             
                             }
 
+                            if ($_GET['urun_onecikar']=="ok") {
+
+	
+
+	
+                                $duzenle=$db->prepare("UPDATE urun SET
+                                    
+                                    urun_onecikar=:urun_onecikar
+                                    
+                                    WHERE urun_id={$_GET['urun_id']}");
+                                
+                                $update=$duzenle->execute(array(
+                            
+                            
+                                    'urun_onecikar' => $_GET['urun_one']
+                                    ));
+                            
+                            
+                            
+                                if ($update) {
+                            
+                                    
+                            
+                                    Header("Location:../production/urun.php?durum=ok");
+                            
+                                } else {
+                            
+                                    Header("Location:../production/urun.php?durum=no");
+                                }
+                            
+                            }
+
+                            
+                            
                            
 
 

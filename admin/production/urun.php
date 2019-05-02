@@ -61,6 +61,7 @@ elseif (isset($_GET['durum']) && $_GET['durum']=="no"){?>
                   <th>Ürün Ad</th>
                   <th>Ürün Stok</th>
                   <th>Ürün Fiyat</th>
+                  <th>Ürün Öne Çıkar</th>
                   <th>Ürün Durum</th>
                   <th></th>
                   <th></th>
@@ -81,6 +82,22 @@ elseif (isset($_GET['durum']) && $_GET['durum']=="no"){?>
                  <td><?php echo $uruncek['urun_ad'] ?></td>
                  <td><?php echo $uruncek['urun_stok'] ?></td>
                  <td><?php echo $uruncek['urun_fiyat'] ?></td>
+                 <td><center><?php 
+
+                  if ($uruncek['urun_onecikar']==0) {?>
+
+                  <a href="../netting/islem.php?urun_id=<?php echo $uruncek['urun_id'] ?>&urun_one=1&urun_onecikar=ok"><button class="btn btn-success btn-xs">Ön Çıkar</button></a>
+  
+
+                  <?php } elseif ($uruncek['urun_onecikar']==1) {?>
+
+
+                  <a href="../netting/islem.php?urun_id=<?php echo $uruncek['urun_id'] ?>&urun_one=0&urun_onecikar=ok"><button class="btn btn-warning btn-xs">Kaldır</button></a>
+
+                     <?php } ?>
+    
+
+                     </center></td>
 
                  <td><center><?php 
 
