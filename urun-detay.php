@@ -134,13 +134,15 @@ if ($say==0) {
 
 						<?php if (isset($_SESSION['userkullanici_mail'])) {?>
 
-						<form role="form">
+						<form action="admin/netting/islem.php" method="POST" role="form">
 							
 							<div class="form-group">
-								<textarea class="form-control" placeholder="Lütfen yorumunuzu buraya yazınız..." id="text"></textarea>
+								<textarea name="yorum_detay" class="form-control" placeholder="Lütfen yorumunuzu buraya yazınız..." id="text"></textarea>
 							</div>
 							
-							<button type="submit" class="btn btn-default btn-red btn-sm">Yorumu Gönder</button>
+							<input type="hidden" name="kullanici_id" value="<?php echo $kullanicicek['kullanici_id'] ?>"
+							
+							<button type="submit" name="yorumkaydet" class="btn btn-default btn-red btn-sm">Yorumu Gönder</button>
 						</form>
 
 						<?php } else {?>
