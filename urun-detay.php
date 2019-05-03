@@ -123,36 +123,78 @@ if ($_GET['durum']=="ok") {?>
 
 			<div class="tab-review">
 				<ul id="myTab" class="nav nav-tabs shop-tab">
-
-					<li <?php if($_GET['durum']!="ok") { ?>
 					
-					class="active" <?php } ?>>
-					<a href="#desc" data-toggle="tab">Açıklama</a></li>
+					<li <?php if ($_GET['durum']!="ok") {?>
+						class="active"
+						<?php } ?>><a href="#desc" data-toggle="tab">Açıklama</a></li>
+						<li 
+
+						<?php if ($_GET['durum']=="ok") {?>
+						class="active"
+						<?php } ?>
+
+						<?php 
+						$kullanici_id=$kullanicicek['kullanici_id'];
+						$urun_id=$uruncek['urun_id'];
+
+						$yorumsor=$db->prepare("SELECT * FROM yorum where urun_id=:urun_id");
+						$yorumsor->execute(array(
+							'urun_id' => $urun_id
+							));
 
 
-					<li <?php if($_GET['durum']=="ok") { ?> 
-					
-					class="active" <?php } ?>>
-					
-					<a href="#rev" data-toggle="tab">Yorumlar (0)</a></li>
-					<li class=""><a href="#video" data-toggle="tab">Ürün Video</a></li>
-				</ul>
-				<div id="myTabContent" class="tab-content shop-tab-ct">
-					<div class="tab-pane fade <?php if ($_GET['durum']!="ok") { ?> active in <?php } ?>" id="desc">
-						<p>
-							<?php echo $uruncek['urun_detay'] ?>
-						</p>
-					</div>
-					<div class="tab-pane fade <?php if ($_GET['durum']=="ok"){ ?> active in <?php } ?>" id="rev">
-						
-						
-						<!-- Yorumları Dökeceğiz -->
-						<p class="dash">
-							<span>Jhon Doe</span> (11/25/2012)<br><br>
-							Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
-						</p>
+							?>
+							><a href="#rev" data-toggle="tab">Yorumlar (<?php echo $yorumsor->rowCount(); ?>)</a></li>
+							<li class=""><a href="#video" data-toggle="tab">Ürün Video</a></li>
+						</ul>
 
-						<!-- Yorumları Dökeceğiz -->
+
+
+
+						<div id="myTabContent" class="tab-content shop-tab-ct">
+							<div class="tab-pane fade <?php if ($_GET['durum']!="ok") {?>
+								active in
+								<?php } ?>" id="desc">
+								<p>
+									<?php echo $uruncek['urun_detay'] ?>
+								</p>
+							</div>
+
+
+							<div class="tab-pane fade <?php if ($_GET['durum']=="ok") {?>
+								active in
+								<?php } ?>" id="rev">
+
+
+								<?php 
+
+
+
+
+								while($yorumcek=$yorumsor->fetch(PDO::FETCH_ASSOC)) {
+
+									$ykullanici_id=$yorumcek['kullanici_id'];
+
+									$ykullanicisor=$db->prepare("SELECT * FROM kullanici where kullanici_id=:id");
+									$ykullanicisor->execute(array(
+										'id' => $ykullanici_id
+										));
+
+									$ykullanicicek=$ykullanicisor->fetch(PDO::FETCH_ASSOC);
+									?>
+
+
+
+									<!-- Yorumları Dökeceğiz -->
+									<p class="dash">
+										<span><?php echo $ykullanicicek['kullanici_adsoyad'] ?></span> (<?php echo $yorumcek['yorum_zaman'] ?>)<br><br>
+										<?php echo $yorumcek['yorum_detay'] ?>
+									</p>
+
+									<!-- Yorumları Dökeceğiz -->
+
+									<?php } ?>
+
 
 
 						<h4>Yorum Yazın</h4>
@@ -161,8 +203,6 @@ if ($_GET['durum']=="ok") {?>
 
 							<form action="admin/netting/islem.php" method="POST" role="form">
 
-							<?php 
-							echo "http://".$_SERVER['HTTP_HOST']."".$_SERVER['REQUEST_URI'].""; ?>
 						
 							
 							<div class="form-group">
@@ -175,6 +215,8 @@ if ($_GET['durum']=="ok") {?>
 										echo "http://".$_SERVER['HTTP_HOST']."".$_SERVER['REQUEST_URI'].""; 
 
 										?>">
+
+                            <input type="hidden" name="urun_id" value="<?php echo $uruncek['urun_id'] ?>">
 							
 							<button type="submit" name="yorumkaydet" class="btn btn-default btn-red btn-sm">Yorumu Gönder</button>
 						</form>

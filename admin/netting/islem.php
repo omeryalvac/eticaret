@@ -953,14 +953,17 @@ if (isset($_POST['iletisimayarkaydet'])) {
                             
                                 $ayarekle=$db->prepare("INSERT INTO yorum SET
                                     yorum_detay=:yorum_detay,
-                                    kullanici_id=:kullanici_id
+                                    kullanici_id=:kullanici_id,
+                                    urun_id=:urun_id
+                                    
                                     
                                     
                                     ");
                             
                                 $insert=$ayarekle->execute(array(
                                     'yorum_detay' => $_POST['yorum_detay'],
-                                    'kullanici_id' => $_POST['kullanici_id']
+                                    'kullanici_id' => $_POST['kullanici_id'],
+                                    'urun_id' => $_POST['urun_id']
                                     
                                     
                                     ));
