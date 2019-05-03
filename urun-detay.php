@@ -25,6 +25,20 @@ if ($say==0) {
 	<!-- fancy Style -->
 	<link rel="stylesheet" type="text/css" href="js\product\jquery.fancybox.css?v=2.1.5" media="screen">
 </head>
+
+<?php 
+
+if ($_GET['durum']=="ok") {?>
+
+<script type="text/javascript">
+	alert("Yorum Başarıyla Eklendi");
+</script>
+
+<?php }
+?>
+
+
+
 <div class="container">
 	
 	<div class="clearfix"></div>
@@ -109,17 +123,27 @@ if ($say==0) {
 
 			<div class="tab-review">
 				<ul id="myTab" class="nav nav-tabs shop-tab">
-					<li class="active"><a href="#desc" data-toggle="tab">Açıklama</a></li>
-					<li class=""><a href="#rev" data-toggle="tab">Yorumlar (0)</a></li>
+
+					<li <?php if($_GET['durum']!="ok") { ?>
+					
+					class="active" <?php } ?>>
+					<a href="#desc" data-toggle="tab">Açıklama</a></li>
+
+
+					<li <?php if($_GET['durum']=="ok") { ?> 
+					
+					class="active" <?php } ?>>
+					
+					<a href="#rev" data-toggle="tab">Yorumlar (0)</a></li>
 					<li class=""><a href="#video" data-toggle="tab">Ürün Video</a></li>
 				</ul>
 				<div id="myTabContent" class="tab-content shop-tab-ct">
-					<div class="tab-pane fade active in" id="desc">
+					<div class="tab-pane fade <?php if ($_GET['durum']!="ok") { ?> active in <?php } ?>" id="desc">
 						<p>
 							<?php echo $uruncek['urun_detay'] ?>
 						</p>
 					</div>
-					<div class="tab-pane fade" id="rev">
+					<div class="tab-pane fade <?php if ($_GET['durum']=="ok"){ ?> active in <?php } ?>" id="rev">
 						
 						
 						<!-- Yorumları Dökeceğiz -->
@@ -136,12 +160,21 @@ if ($say==0) {
 						<?php if (isset($_SESSION['userkullanici_mail'])) {?>
 
 							<form action="admin/netting/islem.php" method="POST" role="form">
+
+							<?php 
+							echo "http://".$_SERVER['HTTP_HOST']."".$_SERVER['REQUEST_URI'].""; ?>
+						
 							
 							<div class="form-group">
 							<textarea name="yorum_detay" class="form-control" placeholder="Lütfen yorumunuzu buraya yazınız..." id="text"></textarea>
 							</div>
 
 							<input type="hidden" name="kullanici_id" value="<?php echo $kullanicicek['kullanici_id'] ?>">
+
+							<input type="hidden" name="gelen_url" value="<?php 
+										echo "http://".$_SERVER['HTTP_HOST']."".$_SERVER['REQUEST_URI'].""; 
+
+										?>">
 							
 							<button type="submit" name="yorumkaydet" class="btn btn-default btn-red btn-sm">Yorumu Gönder</button>
 						</form>
