@@ -980,6 +980,24 @@ if (isset($_POST['iletisimayarkaydet'])) {
                             
                             }
 
+
+
+                            if($_GET[yorumsil]=="ok") {
+
+                                $sil=$db->prepare("DELETE from yorum where yorum_id=:id");
+                                $kontrol=$sil->execute(array(
+                                    'id'=> $_GET['yorum_id']
+                                ));
+                            
+                                if($kontrol){
+                                    header("Location:../production/yorum.php?sil=ok");
+                                }
+                                else {
+                                    header("Location:../production/yorum.php?sil=no");
+                                }
+                            
+                            }
+
                             
                             
                            
