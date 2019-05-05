@@ -93,9 +93,20 @@ if ($_GET['durum']=="ok") {?>
 
                             <input type="hidden" name="urun_id" value="<?php echo $uruncek['urun_id'] ?>">
 
-						
 							<div class="col-sm-4">
+
+
+							<?php if (isset($_SESSION['userkullanici_mail'])) { ?>
+
 								<button type="submit" name="sepeteekle" class="btn btn-default btn-red btn-sm"><span class="addchart">Sepete Ekle</span></button>
+
+							<?php } else { ?>
+							
+								<button type="submit" name="sepeteekle" disabled class="btn btn-default btn-red btn-sm"><span class="addchart">Giriş Yapın</span></button> 
+							</div>
+
+							<?php } ?>
+
 							</div>
 							<div class="clearfix"></div>
 						</div>
