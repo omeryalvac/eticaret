@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<div class="title-bg">
-			<div class="title">Alışveriş Sepetim</div>
+			<div class="title">Ödeme Sayfası</div>
 		</div>
 		
 		<div class="table-responsive">
@@ -55,11 +55,11 @@
 
 
 					<tr>
-						<td><form><input type="checkbox"></form></td>
+						<td><input type="checkbox"></form></td>
 						<td><img src="images\demo-img.jpg" width="100" alt=""></td>
 						<td><?php echo $uruncek['urun_ad'] ?></td>
 						<td><?php echo $uruncek['urun_id'] ?></td>
-						<td><form><input type="text" class="form-control quantity" value="<?php echo $sepetcek['urun_adet'] ?>"></form></td>
+						<td><form><?php echo $sepetcek['urun_adet'] ?> </form></td>
 						<td><?php echo $uruncek['urun_fiyat'] ?></td>
 						
 					</tr>
@@ -82,11 +82,66 @@
 				<div class="total">Toplam Fiyat : <span class="bigprice"><?php echo $toplam_fiyat ?> TL</span></div>
 			
 				<div class="clearfix"></div>
-				<a href="odeme" class="btn btn-default btn-yellow">Ödeme Sayfası</a>
+				<!--<a href="" class="btn btn-default btn-yellow">Ödeme Sayfası</a>-->
 			</div>
 			<div class="clearfix"></div>
 			</div>
 		</div>
+        <div class="tab-review">
+				<ul id="myTab" class="nav nav-tabs shop-tab">
+					
+					<li class="active"><a href="#desc" data-toggle="tab">Kredi Kartı</a></li>
+					<li><a href="#rev" data-toggle="tab">Banka Havalesi</a></li>
+					
+				</ul>
+
+						<div id="myTabContent" class="tab-content shop-tab-ct">
+
+							<div class="tab-pane fade active in" id="desc">
+								<p>
+									Entegrasyon Tamamlanmadı.
+								</p>
+							</div>
+
+
+							<div class="tab-pane fade " id="rev">
+
+                                    Banka				
+					    </div>
+				</div>
+			</div>
+
+			<div id="title-bg">
+				<div class="title">Benzer Ürünler</div>
+			</div>
+			<div class="row prdct"><!--Products-->
+				
+
+				<?php 
+
+				$kategori_id=$uruncek['kategori_id'];
+
+				$urunaltsor=$db->prepare("SELECT * FROM urun where kategori_id=:kategori_id order by  rand() limit 3");
+				$urunaltsor->execute(array(
+					'kategori_id' => $kategori_id
+					));
+
+				while($urunaltcek=$urunaltsor->fetch(PDO::FETCH_ASSOC)) {
+					
+					?>
+
+					<div class="col-md-4">
+						<div class="productwrap">
+							<div class="pr-img">
+								<div class="hot"></div>
+								<a href="urun-<?=seo($urunaltcek["urun_ad"]).'-'.$urunaltcek["urun_id"]?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice"><?php echo $urunaltcek['urun_fiyat']*1.50 ?> TL</span><?php echo $urunaltcek['urun_fiyat'] ?> TL</span></div></div>
+							</div>
+							<span class="smalltitle"><a href="product.htm"><?php echo $urunaltcek['urun_ad'] ?></a></span>
+							<span class="smalldesc">Ürün Kodu.: <?php echo $urunaltcek['urun_id'] ?></span>
+						</div>
+					</div>
+                    <?php } ?>
 		<div class="spacer"></div>
 	</div>
 	
