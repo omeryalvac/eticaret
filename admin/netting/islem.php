@@ -1102,7 +1102,36 @@ if (isset($_POST['iletisimayarkaydet'])) {
                             
                             }
                             
-                      
+                            if (isset($_POST['bankaduzenle'])) {
+
+                               
+                            
+                                $banka_id=$POST['banka_id'];
+                                $kaydet=$db->prepare("UPDATE banka SET
+                                    banka_ad=:ad,
+                                    banka_durum=:banka_durum,	
+                                    banka_hesapadsoyad=:banka_hesapadsoyad,
+                                    banka_iban=:banka_iban
+                                    WHERE banka_id={$_POST['banka_id']}");
+                                $update=$kaydet->execute(array(
+                                    'ad' => $_POST['banka_ad'],
+                                    'banka_durum' => $_POST['banka_durum'],
+                                    'banka_hesapadsoyad' =>  $_POST['banka_hesapadsoyad'],
+                                    'banka_iban' => $_POST['banka_iban']		
+                                    ));
+                            
+                                if ($update) {
+                            
+                                    Header("Location:../production/banka-duzenle.php?banka_id=$banka_id&durum=ok");
+                            
+                                } else {
+                            
+                                    Header("Location:../production/banka-duzenle.php?banka_id=$banka_id&durum=no");
+                                }
+                            
+                            }
+
+                        
                             
                             
                            
