@@ -1133,8 +1133,22 @@ if (isset($_POST['iletisimayarkaydet'])) {
 
                         
                             
+                    
+                            if($_GET[bankasil]=="ok") {
+
+                                $sil=$db->prepare("DELETE from banka where banka_id=:id");
+                                $kontrol=$sil->execute(array(
+                                    'id'=> $_GET['banka_id']
+                                ));
                             
-                           
+                                if($kontrol){
+                                    header("Location:../production/banka.php?sil=ok");
+                                }
+                                else {
+                                    header("Location:../production/banka.php?sil=no");
+                                }
+                            
+                            }   
 
 
 ?>
