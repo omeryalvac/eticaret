@@ -94,6 +94,16 @@ if (isset($_POST['kullanicikaydet'])) {
 
 if (isset($_POST['kullanicigiris'])) {
 
+    include '../../securimage/securimage.php';
+
+	$securimage = new Securimage();
+
+	if ($securimage->check($_POST['captcha_code']) == false) {
+
+		header("Location:../../?durum=captchahata");
+		exit;
+
+    }
 
 	
 	echo $kullanici_mail=htmlspecialchars($_POST['kullanici_mail']); 

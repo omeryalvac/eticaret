@@ -86,6 +86,7 @@ if(isset($_SESSION['userkullanici_mail'])){
                      <?php } else { ?>
 
                        <a href="#"  class="btn btn-default btn-dark">Hoşgeldin<span>--</span><?php echo $kullanicicek['kullanici_adsoyad'] ?></a>
+											 <a href="logout.php" name="logout" title="Logout" class="btn btn-default btn-dark">Çıkış</a>
 
                       <?php } ?>
 						
@@ -108,9 +109,29 @@ if(isset($_SESSION['userkullanici_mail'])){
                         <input type="password" class="form-control" name="kullanici_password" id="password" placeholder="Şifreniz">
                             </div>
 
+														<div class="form-group">
+                        <input type="password" class="form-control" name="captcha_code" id="last_name" placeholder="Güvenlik Kodu ">
+                            </div>
+
+														<div class="row">
+                    <div align="right" class="col-lg-6 col-md-6 col-sm-6 col-xs-12">                                          
+                        <div class="form-group">
+                            <label class="control-label" for="first-name">Güvenlik Kodu *</label>
+
+                            <img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
+                            <a class="btn btn-danger btn-xs" href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">[ Değiştir ]</a>
+
+
+                        </div>
+                    </div>
+                   
+                </div>
+
+
+
 
                            <div class="form-group">
-                        <button type="submit" name="kullanicigiris" class="btn btn-default btn-red btn-sm">Giriş Yap</button>
+                        <center><button type="submit" name="kullanicigiris" class="btn btn-default btn-red btn-sm">Giriş Yap</button></center>
                           </div>
 
                             </form>
