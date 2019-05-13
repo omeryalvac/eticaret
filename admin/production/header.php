@@ -103,6 +103,8 @@ if($say==0) {
                 <li><a href="kategori.php"><i class="fa fa-list"></i> Kategori İşlemleri </a></li>
                 <li><a href="slider.php"><i class="fa fa-image"></i> Slider </a></li>
                 <li><a href="yorum.php"><i class="fa fa-comments"></i> Yorumlar </a></li>
+                <li><a href="banka.php"><i class="fa fa-bank"></i> Bankalar </a></li>
+                
                   <li><a><i class="fa fa-cogs"></i> Site Ayarları <span class="fa fa-cogs"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="genel-ayar.php">Genel Ayarlar</a></li>
