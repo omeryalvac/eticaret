@@ -106,8 +106,23 @@
 
 							<div class="tab-pane fade " id="rev">
 
-                                    Banka				
-					    </div>
+							<form action="admin/netting/islem.php" method="POST">
+								<p>Ödeme Yapacağınız Hesap No Seçin</p>
+
+								<?php
+							$bankasor=$db->prepare("SELECT * FROM banka order by banka_id ASC");
+							$bankasor->execute();
+
+							while($bankacek=$bankasor->fetch(PDO::FETCH_ASSOC)){ ?>
+							
+              <input type="radio" name="banka_id" value="<?php echo $bankacek['banka_id']	?>" >
+							<?php echo $bankacek['banka_ad']; echo " ";	?><br>
+                      
+							<?php	} ?>
+							<hr>
+							<button class="btn btn-success" type="submit" name="sipariskaydet"> Sipariş Ver  </button>
+							</form>
+					    </div>							
 				</div>
 			</div>
 
