@@ -24,12 +24,12 @@
 					<div class="title">Şifre Güncelle</div>
 				</div>
 
-				<?php 
+			<?php 
 
-				if ($_GET['durum']=="farklisifre") {?>
+				if ($_GET['durum']=="eskisifrehata") {?>
 
 				<div class="alert alert-danger">
-					<strong>Hata!</strong> Girdiğiniz şifreler eşleşmiyor.
+					<strong>Hata!</strong> Girdiğiniz eski şifreler eşleşmiyor.
 				</div>
 
 				<?php } elseif ($_GET['durum']=="eksiksifre") {?>
@@ -38,10 +38,10 @@
 					<strong>Hata!</strong> Şifreniz minimum 6 karakter uzunluğunda olmalıdır.
 				</div>
 
-				<?php } elseif ($_GET['durum']=="mukerrerkayit") {?>
+				<?php } elseif ($_GET['durum']=="sifreleruyusmuyor") {?>
 
 				<div class="alert alert-danger">
-					<strong>Hata!</strong> Bu kullanıcı daha önce kayıt edilmiş.
+					<strong>Hata!</strong> Şifreleriniz birbiriyle uyuşmuyor.
 				</div>
 
 				<?php } elseif ($_GET['durum']=="sifredegisti") {?>
@@ -51,7 +51,8 @@
 				</div>
 
 				<?php }
-				?>
+				?> 
+
 
 
 				

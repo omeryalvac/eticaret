@@ -24,7 +24,7 @@
 					<div class="title">Kayıt Bilgileri</div>
 				</div>
 
-				<?php 
+					<!--<?php 
 
 				if ($_GET['durum']=="farklisifre") {?>
 
@@ -51,7 +51,7 @@
 				</div>
 
 				<?php }
-				?>
+				?> -->--
 
 
 				
