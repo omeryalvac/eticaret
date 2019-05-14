@@ -114,13 +114,13 @@ if ($_GET['durum']=="ok") {?>
                            </form>
 
 						<div class="sharing">
-							<div class="share-bt">
+							<div class="share-bt"></div>
 								<div class="addthis_toolbox addthis_default_style ">
 									<a class="addthis_counter addthis_pill_style"></a>
 								</div>
 								<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f0d0827271d1c3b"></script>
 								<div class="clearfix"></div>
-							</div>
+							
 
 
 							<div  class="avatock"><span>
@@ -129,7 +129,6 @@ if ($_GET['durum']=="ok") {?>
 
 									echo "Stok Adeti : ".$uruncek['urun_stok'];
 								} else {
-
 									echo "Ürün Kalmadı";
 								} ?>
 
@@ -145,13 +144,13 @@ if ($_GET['durum']=="ok") {?>
 			<div class="tab-review">
 				<ul id="myTab" class="nav nav-tabs shop-tab">
 					
-					<li <?php if ($_GET['durum']!="ok") {?>
+					<li <?php if (isset($_GET['durum'])!="ok") {?>
 						class="active"
 						<?php } ?>><a href="#desc" data-toggle="tab">Açıklama</a></li>
 						<li 
 
-						<?php if ($_GET['durum']=="ok") {?>
-						class="active"
+						<?php if (isset($_GET['durum'])=="ok") {?>
+						class=""
 						<?php } ?>
 
 						<?php 
