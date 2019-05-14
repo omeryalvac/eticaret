@@ -1257,6 +1257,32 @@ if (isset($_POST['iletisimayarkaydet'])) {
                                 }
                             
                             }
+                            if (isset($_POST['kullanicibilgiguncelle'])) {
+
+                                $kullanici_id=$_POST['kullanici_id'];
                             
+                                $ayarkaydet=$db->prepare("UPDATE kullanici SET
+                                    kullanici_adsoyad=:kullanici_adsoyad,
+                                    kullanici_il=:kullanici_il,
+                                    kullanici_ilce=:kullanici_ilce
+                                    WHERE kullanici_id={$_POST['kullanici_id']}");
+                            
+                                $update=$ayarkaydet->execute(array(
+                                    'kullanici_adsoyad' => $_POST['kullanici_adsoyad'],
+                                    'kullanici_il' => $_POST['kullanici_il'],
+                                    'kullanici_ilce' => $_POST['kullanici_ilce']
+                                    ));
+                            
+                            
+                                if ($update) {
+                            
+                                    Header("Location:../../hesabim?durum=ok");
+                            
+                                } else {
+                            
+                                    Header("Location:../../hesabim?durum=no");
+                                }
+                            
+                            }
 
 ?>
