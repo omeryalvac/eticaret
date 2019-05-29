@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 13 May 2019, 20:54:35
+-- Üretim Zamanı: 29 May 2019, 23:40:19
 -- Sunucu sürümü: 10.1.38-MariaDB
 -- PHP Sürümü: 7.3.4
 
@@ -84,7 +84,8 @@ CREATE TABLE `banka` (
 
 INSERT INTO `banka` (`banka_id`, `banka_ad`, `banka_iban`, `banka_hesapadsoyad`, `banka_durum`) VALUES
 (1, 'Garanti Bankasııııı', 'TR1233321412333214', 'Uğur Can Uyar', '1'),
-(2, 'İş Bankası', 'TR1233325555333214', 'Ömer Yalvaç', '1');
+(2, 'İş Bankası', 'TR1233325555333214', 'Ömer Yalvaç', '1'),
+(3, 'ING Bank', 'TR1233325555663214', 'Uğur Can Uyar', '1');
 
 -- --------------------------------------------------------
 
@@ -162,7 +163,7 @@ CREATE TABLE `kullanici` (
 
 INSERT INTO `kullanici` (`kullanici_id`, `kullanici_zaman`, `kullanici_resim`, `kullanici_tc`, `kullanici_ad`, `kullanici_mail`, `kullanici_gsm`, `kullanici_password`, `kullanici_adsoyad`, `kullanici_adres`, `kullanici_il`, `kullanici_ilce`, `kullanici_unvan`, `kullanici_yetki`, `kullanici_durum`) VALUES
 (137, '2019-04-24 11:34:07', '', '190453111', '', 'omeryalvacc3@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'Ömer Yalvaç..', '', '', '', '', '5', 1),
-(139, '2019-04-27 09:40:57', '', '', '', 'omeryalvac_96@hotmail.com', '', 'e10adc3949ba59abbe56e057f20f883e', 'Ömer Yalvaç', '', '', '', '', '1', 1);
+(139, '2019-04-27 09:40:57', '', '', '', 'omeryalvac_96@hotmail.com', '', '4297f44b13955235245b2497399d7a93', 'Ömer Yalvac', '', 'ağrı', 'merkezz', '', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -204,19 +205,77 @@ CREATE TABLE `sepet` (
   `urun_adet` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin5;
 
+-- --------------------------------------------------------
+
 --
--- Tablo döküm verisi `sepet`
+-- Tablo için tablo yapısı `siparis`
 --
 
-INSERT INTO `sepet` (`sepet_id`, `kullanici_id`, `urun_id`, `urun_adet`) VALUES
-(1, 0, 8, 1),
-(2, 139, 8, 4),
-(3, 139, 8, 1),
-(4, 139, 11, 1),
-(5, 139, 8, 1),
-(6, 139, 8, 3),
-(7, 139, 8, 1),
-(8, 139, 11, 1);
+CREATE TABLE `siparis` (
+  `siparis_id` int(11) NOT NULL,
+  `siparis_zaman` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `siparis_no` int(11) DEFAULT NULL,
+  `kullanici_id` int(11) NOT NULL,
+  `siparis_toplam` float(9,2) NOT NULL,
+  `siparis_tip` varchar(50) NOT NULL,
+  `siparis_banka` varchar(50) NOT NULL,
+  `siparis_odeme` enum('0','1') NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Tablo döküm verisi `siparis`
+--
+
+INSERT INTO `siparis` (`siparis_id`, `siparis_zaman`, `siparis_no`, `kullanici_id`, `siparis_toplam`, `siparis_tip`, `siparis_banka`, `siparis_odeme`) VALUES
+(1, '2019-05-14 02:55:55', NULL, 139, 244.00, 'Banka Havalesi', 'Garanti Bankas?????', '0'),
+(2, '2019-05-14 02:56:31', NULL, 139, 0.00, 'Banka Havalesi', '?? Bankas?', '0'),
+(3, '2019-05-14 02:56:52', NULL, 139, 0.00, 'Banka Havalesi', 'Garanti Bankas?????', '0'),
+(4, '2019-05-14 02:57:28', NULL, 139, 234.00, 'Banka Havalesi', '?? Bankas?', '0'),
+(5, '2019-05-14 05:43:40', NULL, 139, 3872.00, 'Banka Havalesi', 'Garanti Bankas?????', '0'),
+(6, '2019-05-14 05:55:30', NULL, 139, 44.00, 'Banka Havalesi', 'ING Bank', '0'),
+(7, '2019-05-14 06:32:25', NULL, 139, 246.00, 'Banka Havalesi', 'Garanti Bankas?????', '0'),
+(8, '2019-05-14 08:25:39', NULL, 139, 246.00, 'Banka Havalesi', 'Garanti Bankas?????', '0'),
+(9, '2019-05-24 14:53:05', NULL, 0, 0.00, 'Banka Havalesi', 'Garanti Bankas?????', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `siparis_detay`
+--
+
+CREATE TABLE `siparis_detay` (
+  `siparisdetay_id` int(11) NOT NULL,
+  `siparis_id` int(11) NOT NULL,
+  `urun_id` int(11) NOT NULL,
+  `urun_fiyat` float(9,2) NOT NULL,
+  `urun_adet` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Tablo döküm verisi `siparis_detay`
+--
+
+INSERT INTO `siparis_detay` (`siparisdetay_id`, `siparis_id`, `urun_id`, `urun_fiyat`, `urun_adet`) VALUES
+(1, 1, 8, 22.00, 4),
+(2, 1, 8, 22.00, 1),
+(3, 1, 11, 12.00, 1),
+(4, 1, 8, 22.00, 1),
+(5, 1, 8, 22.00, 3),
+(6, 1, 8, 22.00, 1),
+(7, 1, 11, 12.00, 1),
+(8, 4, 10, 234.00, 1),
+(9, 5, 10, 234.00, 1),
+(10, 5, 12, 12.00, 1),
+(11, 5, 10, 234.00, 2),
+(12, 5, 10, 234.00, 3),
+(13, 5, 8, 22.00, 101),
+(14, 5, 10, 234.00, 1),
+(15, 6, 8, 22.00, 2),
+(16, 7, 10, 234.00, 1),
+(17, 7, 11, 12.00, 1),
+(18, 8, 10, 234.00, 1),
+(19, 8, 12, 12.00, 1),
+(20, 9, 8, 22.00, 1);
 
 -- --------------------------------------------------------
 
@@ -240,8 +299,7 @@ CREATE TABLE `slider` (
 INSERT INTO `slider` (`slider_id`, `slider_ad`, `slider_resimyol`, `slider_sira`, `slider_link`, `slider_durum`) VALUES
 (9, 'slider 1', 'dimg/slider/29722205392520328359slide-1.jpg', 1, 'https://jasig.firat.edu.tr/cas/login;jsessionid=34B445B191CAB1044B79C0EFE68D9937?target=googleAppsStaff', '1'),
 (10, 'Slider 2', 'dimg/slider/25393274662858430312slide-2.jpg', 2, '', '1'),
-(11, '123', 'dimg/slider/24801260882826430430indir.jpg', 123, '123', '1'),
-(13, '123', 'dimg/slider/270812135129574256256iJb5igd_400x400.jpg', 123, '123', '1');
+(11, '123', 'dimg/slider/24801260882826430430indir.jpg', 123, '123', '1');
 
 -- --------------------------------------------------------
 
@@ -350,6 +408,18 @@ ALTER TABLE `sepet`
   ADD PRIMARY KEY (`sepet_id`);
 
 --
+-- Tablo için indeksler `siparis`
+--
+ALTER TABLE `siparis`
+  ADD PRIMARY KEY (`siparis_id`);
+
+--
+-- Tablo için indeksler `siparis_detay`
+--
+ALTER TABLE `siparis_detay`
+  ADD PRIMARY KEY (`siparisdetay_id`);
+
+--
 -- Tablo için indeksler `slider`
 --
 ALTER TABLE `slider`
@@ -375,7 +445,7 @@ ALTER TABLE `yorum`
 -- Tablo için AUTO_INCREMENT değeri `banka`
 --
 ALTER TABLE `banka`
-  MODIFY `banka_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `banka_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kategori`
@@ -399,13 +469,25 @@ ALTER TABLE `menu`
 -- Tablo için AUTO_INCREMENT değeri `sepet`
 --
 ALTER TABLE `sepet`
-  MODIFY `sepet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `sepet_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `siparis`
+--
+ALTER TABLE `siparis`
+  MODIFY `siparis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `siparis_detay`
+--
+ALTER TABLE `siparis_detay`
+  MODIFY `siparisdetay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `slider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `slider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `urun`
