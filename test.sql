@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 29 May 2019, 23:40:19
+-- Üretim Zamanı: 30 May 2019, 01:52:26
 -- Sunucu sürümü: 10.1.38-MariaDB
 -- PHP Sürümü: 7.3.4
 
@@ -336,6 +336,27 @@ INSERT INTO `urun` (`urun_id`, `kategori_id`, `urun_zaman`, `urun_ad`, `urun_seo
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `urunfoto`
+--
+
+CREATE TABLE `urunfoto` (
+  `urunfoto_id` int(11) NOT NULL,
+  `urun_id` int(11) NOT NULL,
+  `urunfoto_resimyol` varchar(255) NOT NULL,
+  `urunfoto_sira` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Tablo döküm verisi `urunfoto`
+--
+
+INSERT INTO `urunfoto` (`urunfoto_id`, `urun_id`, `urunfoto_resimyol`, `urunfoto_sira`) VALUES
+(1, 13, 'dimg/urun/263882369526019264941.jpg', 0),
+(3, 13, 'dimg/urun/226822892123860269533.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `yorum`
 --
 
@@ -432,6 +453,12 @@ ALTER TABLE `urun`
   ADD PRIMARY KEY (`urun_id`);
 
 --
+-- Tablo için indeksler `urunfoto`
+--
+ALTER TABLE `urunfoto`
+  ADD PRIMARY KEY (`urunfoto_id`);
+
+--
 -- Tablo için indeksler `yorum`
 --
 ALTER TABLE `yorum`
@@ -494,6 +521,12 @@ ALTER TABLE `slider`
 --
 ALTER TABLE `urun`
   MODIFY `urun_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `urunfoto`
+--
+ALTER TABLE `urunfoto`
+  MODIFY `urunfoto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `yorum`

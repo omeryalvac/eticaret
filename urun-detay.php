@@ -1,7 +1,7 @@
 <?php 
 
 include 'header.php'; 
-
+error_reporting(0);
 
 $urunsor=$db->prepare("SELECT * FROM urun where urun_id=:urun_id");
 $urunsor->execute(array(
