@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 30 May 2019, 01:52:26
+-- Üretim Zamanı: 30 May 2019, 21:32:14
 -- Sunucu sürümü: 10.1.38-MariaDB
 -- PHP Sürümü: 7.3.4
 
@@ -163,7 +163,7 @@ CREATE TABLE `kullanici` (
 
 INSERT INTO `kullanici` (`kullanici_id`, `kullanici_zaman`, `kullanici_resim`, `kullanici_tc`, `kullanici_ad`, `kullanici_mail`, `kullanici_gsm`, `kullanici_password`, `kullanici_adsoyad`, `kullanici_adres`, `kullanici_il`, `kullanici_ilce`, `kullanici_unvan`, `kullanici_yetki`, `kullanici_durum`) VALUES
 (137, '2019-04-24 11:34:07', '', '190453111', '', 'omeryalvacc3@gmail.com', '', '202cb962ac59075b964b07152d234b70', 'Ömer Yalvaç..', '', '', '', '', '5', 1),
-(139, '2019-04-27 09:40:57', '', '', '', 'omeryalvac_96@hotmail.com', '', '4297f44b13955235245b2497399d7a93', 'Ömer Yalvac', '', 'ağrı', 'merkezz', '', '1', 1);
+(139, '2019-04-27 09:40:57', '', '', '', 'omeryalvac_96@hotmail.com', '', '202cb962ac59075b964b07152d234b70', 'Ömer Yalvac', '', 'ağrı', 'merkezz', '', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -351,8 +351,21 @@ CREATE TABLE `urunfoto` (
 --
 
 INSERT INTO `urunfoto` (`urunfoto_id`, `urun_id`, `urunfoto_resimyol`, `urunfoto_sira`) VALUES
-(1, 13, 'dimg/urun/263882369526019264941.jpg', 0),
-(3, 13, 'dimg/urun/226822892123860269533.jpg', 0);
+(4, 8, 'dimg/urun/202782298025490236161.jpg', 0),
+(5, 8, 'dimg/urun/305972664027206206702.jpg', 0),
+(6, 8, 'dimg/urun/216713108921131295323.jpg', 0),
+(7, 10, 'dimg/urun/248452072520507288812.jpg', 0),
+(8, 10, 'dimg/urun/202852212722982259791.jpg', 0),
+(9, 10, 'dimg/urun/283633109920252235473.jpg', 0),
+(10, 13, 'dimg/urun/203392937822642306801.jpg', 0),
+(11, 13, 'dimg/urun/212732550525333232832.jpg', 0),
+(12, 13, 'dimg/urun/225553123826287315123.jpg', 0),
+(13, 12, 'dimg/urun/303242491625629302661.jpg', 0),
+(14, 12, 'dimg/urun/310122005923785255072.jpg', 0),
+(15, 12, 'dimg/urun/257922021831072217053.jpg', 0),
+(16, 11, 'dimg/urun/310672867421021282211.jpg', 0),
+(17, 11, 'dimg/urun/311372602127368292772.jpg', 0),
+(18, 11, 'dimg/urun/248202591421062234023.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -526,7 +539,7 @@ ALTER TABLE `urun`
 -- Tablo için AUTO_INCREMENT değeri `urunfoto`
 --
 ALTER TABLE `urunfoto`
-  MODIFY `urunfoto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `urunfoto_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `yorum`
