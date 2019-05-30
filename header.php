@@ -147,17 +147,18 @@ if(isset($_SESSION['userkullanici_mail'])){
 								</div>
 							</div>
 							<div class="srch-wrap">
-								<a href="#" id="srch" class="btn btn-default btn-search"><i class="fa fa-search"></i></a>
-							</div>
-							<div class="srchwrap">
-								<div class="row">
-									<div class="col-md-12">
-										<form class="form-horizontal" role="form">
-											<div class="form-group">
-												<label for="search" class="col-sm-2 control-label">Search</label>
-												<div class="col-sm-10">
-													<input type="text" class="form-control" id="search">
-												</div>
+							<a href="#" id="srch" class="btn btn-default btn-search"><i class="fa fa-search"></i></a>
+       </div>
+       <div class="srchwrap">
+         <div class="row">
+          <div class="col-md-12">
+           <form action="arama" method="POST" class="form-horizontal" role="form">
+            <div class="form-group">
+             <!--<label for="search" class="col-sm-2 control-label">Search</label>-->
+             <button name="arama" class="btn btn-default   ">Ara</button>    
+             <div class="col-sm-10">
+              <input type="text" name="aranan" minlength="3" class="form-control" id="search">
+            </div>
 											</div>
 										</form>
 									</div>
