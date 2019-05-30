@@ -61,6 +61,7 @@ elseif (isset($_GET['durum']) && $_GET['durum']=="no"){?>
                   <th>Ürün Ad</th>
                   <th>Ürün Stok</th>
                   <th>Ürün Fiyat</th>
+                  <th>Resim İşlemleri</th>
                   <th>Ürün Öne Çıkar</th>
                   <th>Ürün Durum</th>
                   <th></th>
@@ -82,6 +83,7 @@ elseif (isset($_GET['durum']) && $_GET['durum']=="no"){?>
                  <td><?php echo $uruncek['urun_ad'] ?></td>
                  <td><?php echo $uruncek['urun_stok'] ?></td>
                  <td><?php echo $uruncek['urun_fiyat'] ?></td>
+                 <td><center><a href="urun-galeri.php?urun_id=<?php echo $uruncek['urun_id'] ?>"> <button class="btn btn-success btn-xs"> Resim İşlemleri </button> </a> </td>
                  <td><center><?php 
 
                   if ($uruncek['urun_onecikar']==0) {?>
